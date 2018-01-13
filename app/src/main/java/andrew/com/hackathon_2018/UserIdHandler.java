@@ -12,20 +12,13 @@ import java.util.ArrayList;
 
 public class UserIdHandler {
 
-    protected String userEmail, userPassword, displayName;
+    protected String userEmail, userPassword;
+    final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    final FirebaseUser mUser = mAuth.getCurrentUser();
 
-    public UserIdHandler(String userEmail, String userPassword, String displayName ){
+    public UserIdHandler(String userEmail, String userPassword){
         this.userEmail = userEmail;
         this.userPassword = userPassword;
-        this.displayName = displayName;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
     }
 
     public String getUserEmail() {

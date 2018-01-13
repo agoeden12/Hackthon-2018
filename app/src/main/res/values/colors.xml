@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="lightBlue">#75A1CC</color>
+    <color name="lightPink">#C470CC</color>
+    <color name="indigo">#4529A0</color>
+    <color name="linkColor">#0000EE</color>
 </resources>

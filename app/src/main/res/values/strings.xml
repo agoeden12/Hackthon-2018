@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Hackathon_2018</string>
+    <string name="loginScreenTitleTextView"><b><u>Login:</u></b></string>
+    <string name="loginScreenSignInButton"><b>Sign In</b></string>
+    <string name="loginScreenEmailEditTextHint">Email</string>
+    <string name="loginScreenPasswordEditTextHint">Password</string>
+    <string name="loginScreenNotSignedUpText"><u>Sign Up Now!</u></string>
+
+    <string name="signUpScreenDisplayNameText">First Name</string>
+    <string name="signInScreenEmailEditTextHint">Email</string>
+    <string name="signInScreenTitleTextView"><b><u>SignUp:</u></b></string>
+    <string name="signInScreenPasswordEditTextHint">Password</string>
+    <string name="signInScreenSignUpButton">SignUp</string>
+    <string name="signUpScreenSchoolCodeHint">Your School Code</string>
+
+    <string name="homeScreenStatsTextButton"><b>Stats</b></string>
+    <string name="homeScreenGroupTextButton"><b>Groups</b></string>
+    <string name="homeScreenHiUserText">Hello !</string>
 </resources>

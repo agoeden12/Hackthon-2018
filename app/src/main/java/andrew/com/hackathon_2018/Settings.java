@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -15,6 +16,7 @@ public class Settings extends AppCompatActivity {
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
 
+    public TextView userEmailTextView, userFullNameTextView;
     public Button logoutButton;
 
     private Context mContext = this;
@@ -29,10 +31,14 @@ public class Settings extends AppCompatActivity {
         initializeFirebaseVariables();
 
         setOnClickListeners();
+
+        setUserInformation();
     }
 
     private void initializeViews(){
         logoutButton = findViewById(R.id.logoutButton);
+        userEmailTextView = findViewById(R.id.settingScreenUserEmailTextView);
+        userFullNameTextView = findViewById(R.id.settingScreenUserFullNameTextView);
     }
 
     private void initializeFirebaseVariables(){
@@ -47,6 +53,11 @@ public class Settings extends AppCompatActivity {
                 logoutUser();
             }
         });
+    }
+
+    private void setUserInformation(){
+        userEmailTextView.setText(mUser.getEmail());
+        userFullNameTextView.setText(mUser.getDisplayName());
     }
 
     private void logoutUser(){

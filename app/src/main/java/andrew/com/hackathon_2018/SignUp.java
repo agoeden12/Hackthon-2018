@@ -8,9 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,11 +33,25 @@ public class SignUp extends AppCompatActivity {
     public DatabaseReference mDatabaseReference;
 
     public Button signUpButton;
-    public EditText usernameEditText, passwordEditText, schoolCodeEditText, displayNameEditText;
+    public EditText usernameEditText, passwordEditText, schoolCodeEditText,
+            displayFirstNameEditText, displayLastNameEditText;
+    public ImageSwitcher imageSwitcher;
+
 
     public String emailText, passwordText, schoolCodeText, displayNameText;
 
     private Context mContext = this;
+
+    private Integer images[] = {R.drawable.volunteer7, R.drawable.volunteer6, R.drawable.volunteer3
+            ,R.drawable.volunteer4};
+    private int currentImage = 0;
+
+    Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            setCurrentImage();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +63,9 @@ public class SignUp extends AppCompatActivity {
         initializeFirebaseVariables();
 
         setOnClickListeners();
+
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(mRunnable, 5000);
     }
 
     private void initializeViews(){
@@ -52,7 +73,29 @@ public class SignUp extends AppCompatActivity {
         usernameEditText = findViewById(R.id.signInScreenUsernameEditText);
         passwordEditText = findViewById(R.id.signInScreenPasswordEditText);
         schoolCodeEditText = findViewById(R.id.signUpScreenSchoolCodeEditText);
-        displayNameEditText = findViewById(R.id.signUpScreenDisplayNameEditText);
+        displayFirstNameEditText = findViewById(R.id.signUpScreenDisplayFirstNameEditText);
+        displayLastNameEditText = findViewById(R.id.signUpScreenDisplayLastNameEditText);
+
+        initializeImageSwitcher();
+    }
+
+    private void initializeImageSwitcher() {
+        imageSwitcher = findViewById(R.id.signUpScreenImageSwitcher);
+        imageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                ImageView imageView = new ImageView(mContext);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                return imageView;
+            }
+        });
+
+        imageSwitcher.setInAnimation(AnimationUtils.loadAnimation(
+                mContext, android.R.anim.slide_in_left));
+        imageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(
+                mContext, android.R.anim.slide_out_right));
+
+        setCurrentImage();
     }
 
     private void initializeFirebaseVariables(){
@@ -100,7 +143,8 @@ public class SignUp extends AppCompatActivity {
         emailText = usernameEditText.getText().toString().trim();
         passwordText  = passwordEditText.getText().toString().trim();
         schoolCodeText = schoolCodeEditText.getText().toString().trim();
-        displayNameText = displayNameEditText.getText().toString().trim();
+        displayNameText = displayFirstNameEditText.getText().toString().trim() + " "
+            + displayLastNameEditText.getText().toString().trim();
     }
 
     private boolean checkIfEditTextViewsAreEmpty(){
@@ -123,4 +167,14 @@ public class SignUp extends AppCompatActivity {
     private void goToHomeScreen(){
         startActivity(new Intent(mContext, HomeScreen.class));
     }
+
+    private void setCurrentImage(){
+        currentImage++;
+        if (currentImage == 4)
+            currentImage = 0;
+        imageSwitcher.setImageResource(images[currentImage]);
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(mRunnable, 10000);
+    }
+
 }

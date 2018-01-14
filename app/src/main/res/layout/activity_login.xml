@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="andrew.com.hackathon_2018.LoginActivity">
+    tools:context="andrew.com.hackathon_2018.LoginActivity"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <ImageSwitcher
         android:layout_width="match_parent"
@@ -34,6 +36,8 @@
             android:id="@+id/loginScreenUsernameEditText"
             android:hint="@string/loginScreenEmailEditTextHint"
             android:textColor="#000000"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"
             />
         <EditText
             android:layout_width="match_parent"
@@ -43,6 +47,11 @@
             android:hint="@string/loginScreenPasswordEditTextHint"
             android:textColor="#000000"
             android:inputType="textPassword"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"
+            android:shadowColor="@color/indigo"
+            android:textColorLink="@color/indigo"
+
             />
         <Button
             android:layout_width="match_parent"
@@ -51,7 +60,8 @@
             android:text="@string/loginScreenSignInButton"
             android:textColor="@android:color/white"
             android:background="@drawable/login_button_design"
-            android:id="@+id/loginScreenSignInButton"/>
+            android:id="@+id/loginScreenSignInButton"
+            android:elevation="30dp" />
     </LinearLayout>
 
     <TextView

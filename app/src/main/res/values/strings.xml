@@ -6,17 +6,31 @@
     <string name="loginScreenPasswordEditTextHint">Password</string>
     <string name="loginScreenNotSignedUpText"><u>Sign Up!</u></string>
 
-    <string name="signUpScreenDisplayNameText">First Name</string>
+    <string name="signUpScreenDisplayFirstNameText">First Name</string>
+    <string name="signUpScreenDisplayLastNameText">Last Name</string>
     <string name="signInScreenEmailEditTextHint">Email</string>
     <string name="signInScreenTitleTextView"><b>SignUp</b></string>
     <string name="signInScreenPasswordEditTextHint">Password</string>
     <string name="signInScreenSignUpButton">SignUp</string>
     <string name="signUpScreenSchoolCodeHint">Your School Code</string>
 
-    <string name="homeScreenStatsTextButton"><b>STATS</b></string>
-    <string name="homeScreenGroupTextButton"><b>GROUPS</b></string>
-    <string name="homeScreenJoinTextButton"><b>JOIN</b></string>
-    <string name="homeScreenCreateTextButton"><b>CREATE</b></string>
-    <string name="homeScreenSettingsTextButton"><b>SETTINGS</b></string>
+    <string name="homeScreenStatsTextButton">STATS</string>
+    <string name="homeScreenGroupTextButton">GROUPS</string>
+    <string name="homeScreenJoinTextButton">JOIN</string>
+    <string name="homeScreenCreateTextButton">CREATE</string>
+    <string name="homeScreenSettingsTextButton">SETTINGS</string>
     <string name="homeScreenHiUserText"><b>Hello !</b></string>
+
+    <string name="settingsScreenLogoutText"><b>Logout</b></string>
+    <string name="settingsScreenPrivacyTextView"><b>Privacy</b></string>
+    <string name="settingsScreenContactInfoTextView"><b>Contact Info</b></string>
+    <string name="settingsScreenGPSEnabledTextView">GPS Enabled</string>
+    <string name="settingsScreenExpandVolunteerRangeTextView">Expand GPS Radius</string>
+    <string name="settingsScreenContactEmailTextView">Email:</string>
+    <string name="settingsScreenContactFullNameTextView">Full Name:</string>
+
+    <string name="statsScreenHoursGivenTextViewPlaceHolder">0</string>
+    <string name="statsScreenHoursTextView">HOURS</string>
+    <string name="statsScreenNoPastActivitiesTextView">Oh No! You Have No Past Activities</string>
+    <string name="statsScreenPastActivityTitleTextView"><b>Past Activities</b></string>
 </resources>

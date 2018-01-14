@@ -29,12 +29,20 @@
             android:name=".SignUp"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".Settings"
+        <activity
+            android:name=".Settings"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Settings"
             android:parentActivityName=".HomeScreen"
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+
+        <activity android:name=".Stats"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName=".HomeScreen"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
+            android:label="Stats"/>
     </application>
 
 </manifest>

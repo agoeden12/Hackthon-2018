@@ -4,17 +4,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class HomeScreen extends AppCompatActivity {
 
-    public TextView hiUserTextView, settingsTextViewButton;
+    public TextView hiUserTextView, settingsTextViewButton, statsTextViewButton;
+    public ImageSwitcher mImageSwitcher;
 
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
@@ -22,6 +30,12 @@ public class HomeScreen extends AppCompatActivity {
     public DatabaseReference mDatabaseReference;
 
     private Context mContext = this;
+
+    private Integer images[] = {R.drawable.volunteer7, R.drawable.volunteer6, R.drawable.volunteer3
+            ,R.drawable.volunteer4};
+    private int currentImage = 0;
+
+    private ArrayList<LocalEvents> mLocalEventsArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +48,58 @@ public class HomeScreen extends AppCompatActivity {
 
         setOnClickListeners();
 
+        setOnSwipeListeners();
+
         setHiUserText();
+
+        populateLocalEvents();
     }
 
     private void initializeViews(){
         hiUserTextView = findViewById(R.id.homeScreenHiUserTextView);
         settingsTextViewButton = findViewById(R.id.homeScreenSettingsTextButton);
+        statsTextViewButton = findViewById(R.id.homeScreenStatsTextButton);
+        
+        initializeImageSwitcher();
     }
 
+    private void initializeImageSwitcher() {
+        mImageSwitcher = findViewById(R.id.homeScreenSponsorImageSwitcher);
+        mImageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                ImageView imageView = new ImageView(mContext);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                return imageView;
+            }
+        });
+
+        mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(
+                mContext, android.R.anim.slide_in_left));
+        mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(
+                mContext, android.R.anim.slide_out_right));
+
+        setCurrentImage(0);
+
+    }
+
+    private void setCurrentImage(int changeNumber){
+
+        if(changeNumber == 1){
+            mImageSwitcher.setInAnimation(AnimationUtils.loadAnimation(
+                    mContext, android.R.anim.slide_in_left));
+            mImageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(
+                    mContext, android.R.anim.slide_out_right));
+        }
+
+        currentImage = currentImage + changeNumber;
+        if (currentImage > 4)
+            currentImage = 0;
+        if (currentImage < 0)
+            currentImage = 4;
+        mImageSwitcher.setImageResource(images[currentImage]);
+    }
+    
     private void initializeFirebaseVariables(){
         mFirebaseAuth = FirebaseAuth.getInstance();
         mUser =  mFirebaseAuth.getCurrentUser();
@@ -56,17 +114,50 @@ public class HomeScreen extends AppCompatActivity {
                 goToSettings();
             }
         });
+
+        statsTextViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToStats();
+            }
+        });
+    }
+
+    private void setOnSwipeListeners(){
+        mImageSwitcher.setOnTouchListener(new OnSwipeTouchListener(mContext) {
+            public void onSwipeRight() {
+                setCurrentImage(1);
+            }
+            public void onSwipeLeft() {
+                setCurrentImage(-1);
+            }
+        });
     }
 
     private void goToSettings(){
         startActivity(new Intent(mContext, Settings.class));
     }
 
+    private void goToStats(){
+        startActivity(new Intent(mContext, Stats.class));
+    }
+
     private void setHiUserText(){
-        String hiUserText = hiUserTextView.getText().toString().trim();
-        hiUserText = hiUserText.substring(0, hiUserText.length()-1)
-                + mUser.getDisplayName() + hiUserText.substring(hiUserText.length() -1);
-        hiUserTextView.setText(hiUserText);
+        String displayName  = mUser.getDisplayName();
+        if (displayName != null) {
+
+            String hiUserText = hiUserTextView.getText().toString().trim();
+            hiUserText = hiUserText.substring(0, hiUserText.length() - 1)
+                    + displayName
+                    + hiUserText.substring(hiUserText.length() - 1);
+            hiUserTextView.setText(hiUserText);
+        }
+    }
+
+    private void populateLocalEvents(){
+        LocalEvents canHungerEvent = new LocalEvents();
+        canHungerEvent.setEventTitle("Can Hunger");
+        canHungerEvent.setEventDescription("");
     }
 
 }

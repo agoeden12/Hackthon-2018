@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="andrew.com.hackathon_2018.SignUp">
 
+    <ImageSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/signUpScreenImageSwitcher" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,17 +19,31 @@
         android:layout_centerInParent="true"
         android:padding="36dp">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/signInScreenTitleTextView"
-            android:textSize="24sp"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:textColor="@color/indigo"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/signUpScreenDisplayNameText"
-            android:id="@+id/signUpScreenDisplayNameEditText"/>
+            android:hint="@string/signUpScreenDisplayFirstNameText"
+            android:id="@+id/signUpScreenDisplayFirstNameEditText"
+            android:textColor="#000000"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/signUpScreenDisplayLastNameText"
+            android:id="@+id/signUpScreenDisplayLastNameEditText"
+            android:textColor="#000000"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -33,6 +52,8 @@
             android:id="@+id/signInScreenUsernameEditText"
             android:hint="@string/signInScreenEmailEditTextHint"
             android:textColor="#000000"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"
             />
         <EditText
             android:layout_width="match_parent"
@@ -42,6 +63,8 @@
             android:id="@+id/signInScreenPasswordEditText"
             android:hint="@string/signInScreenPasswordEditTextHint"
             android:textColor="#000000"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"
             />
 
         <EditText
@@ -49,13 +72,18 @@
             android:layout_height="wrap_content"
             android:hint="@string/signUpScreenSchoolCodeHint"
             android:inputType="number"
-            android:id="@+id/signUpScreenSchoolCodeEditText"/>
+            android:id="@+id/signUpScreenSchoolCodeEditText"
+            android:textColor="#000000"
+            android:backgroundTint="@color/indigo"
+            android:textColorHint="@color/indigo"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:text="@string/signInScreenSignUpButton"
             android:id="@+id/signInScreenSignUpButton"
+            android:background="@drawable/login_button_design"
+            android:textColor="@android:color/white"
             />
     </LinearLayout>
 </RelativeLayout>

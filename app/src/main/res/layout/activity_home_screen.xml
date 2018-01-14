@@ -4,68 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="andrew.com.hackathon_2018.HomeScreen">
+    tools:context="andrew.com.hackathon_2018.HomeScreen"
+    android:clipChildren="false"
+    android:clipToPadding="false">
 
     <LinearLayout
-        android:id="@+id/homeScreenNavigationScrollBar"
+        android:id="@+id/homeScreenNavigationLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/indigo"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:elevation="30dp"
+        >
 
         <TextView
+            android:id="@+id/homeScreenSettingsTextButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="15dp"
             android:text="@string/homeScreenSettingsTextButton"
-            android:id="@+id/homeScreenSettingsTextButton"
             android:textColor="@android:color/white"
-            android:textSize="16sp"/>
+            android:textSize="20sp" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
                 android:text="@string/homeScreenStatsTextButton"
                 android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp"
+                android:id="@+id/homeScreenStatsTextButton"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="15dp"
                 android:text="@string/homeScreenGroupTextButton"
                 android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
             android:text="@string/homeScreenJoinTextButton"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:text="@string/homeScreenCreateTextButton"
-            android:id="@+id/homeScreenCreateTextButton"
-            android:textColor="@android:color/white"
-            android:textSize="16sp" />
+
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/homeScreenNavigationScrollBar"
-        android:layout_margin="15dp"
+        android:layout_below="@id/homeScreenNavigationLinearLayout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:text="@string/homeScreenHiUserText"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textColor="@color/lightBlue"
         android:id="@+id/homeScreenHiUserTextView"
         />
+
+    <ImageSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:elevation="15dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/homeScreenHiUserTextView"
+        android:id="@+id/homeScreenSponsorImageSwitcher"
+        android:background="@android:color/white"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_below="@id/homeScreenSponsorImageSwitcher"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/homeScreenLocalEventsScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/homeScreenLocalEventsLinearLayout"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_brightness_1_black_24dp"
+        android:tint="@color/lightPink"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="50dp"
+        android:elevation="-15dp"/>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_share_black_24dp"
+        android:backgroundTint="@android:color/transparent"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="50dp"
+        />
+
+    <ImageButton
+        android:id="@+id/addImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_add_circle_black_24dp"
+        android:tint="@color/lightPink"
+        android:background="@android:color/transparent"
+        tools:layout_editor_absoluteX="50dp"
+        tools:layout_editor_absoluteY="50dp"
+        android:elevation="15dp"/>
 
 </RelativeLayout>

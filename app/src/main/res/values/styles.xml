@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--<style name="MyTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">-->
+        <!--<item name="android:actionBarTabBarStyle">@style/UpButtonTheme</item>-->
+        <!--<item name="android:background">@android:color/white</item>-->
+    <!--</style>-->
+
+    <!--<style name="UpButtonTheme" parent="Theme.AppCompat">-->
+        <!--<item name="android:background">@color/indigo</item>-->
+    <!--</style>-->
+
 </resources>

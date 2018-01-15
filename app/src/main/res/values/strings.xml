@@ -33,4 +33,19 @@
     <string name="statsScreenHoursTextView">HOURS</string>
     <string name="statsScreenNoPastActivitiesTextView">Oh No! You Have No Past Activities</string>
     <string name="statsScreenPastActivityTitleTextView"><b>Past Activities</b></string>
+
+    <string name="canHungerTitle">North Gwinnett Co-Op</string>
+    <string name="canHungerTitle2">Can Hunger</string>
+    <string name="canHungerDesc">Come help stop hunger in your community!</string>
+
+    <string name="roadCleanUpTitle">Road Clean Up</string>
+    <string name="roadCleanUpDescription">Make your roads shine this Sunday!</string>
+
+    <string name="sugarHillRetireTitle">Help The Retired</string>
+    <string name="sugarHillRetireDescription">Help your local retirees learn
+        basic computer skills.</string>
+
+    <string name="feedHomelessTitle">Feed The Homeless</string>
+
+    <string name="northgwinnettcoopdesc">The North Gwinnett Co-Operative Ministries is a faith based organization that provides food, clothing, utility and prescription medication assistance to residents of Buford, Sugar Hill and Suwanee, GA. Please see "Our Services" page for more information.</string>
 </resources>

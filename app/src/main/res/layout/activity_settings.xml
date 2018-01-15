@@ -19,8 +19,9 @@
             android:layout_height="wrap_content"
             android:text="@string/settingsScreenPrivacyTextView"
             android:textSize="24sp"
-            android:textColor="@color/indigo"
+            android:textColor="@color/darkRed"
             android:layout_marginBottom="15dp"
+            android:fontFamily="@font/encodesans_extralight"
             />
 
         <RelativeLayout
@@ -34,6 +35,7 @@
                 android:text="@string/settingsScreenGPSEnabledTextView"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:fontFamily="@font/encodesans_extralight"
             />
 
             <Switch
@@ -56,6 +58,7 @@
                 android:text="@string/settingsScreenExpandVolunteerRangeTextView"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:fontFamily="@font/encodesans_extralight"
                 />
 
             <Switch
@@ -71,9 +74,10 @@
             android:layout_height="wrap_content"
             android:text="@string/settingsScreenContactInfoTextView"
             android:textSize="24sp"
-            android:textColor="@color/indigo"
+            android:textColor="@color/darkRed"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/encodesans_extralight"
             />
         <RelativeLayout
             android:layout_width="match_parent"
@@ -86,6 +90,7 @@
                 android:text="@string/settingsScreenContactEmailTextView"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:fontFamily="@font/encodesans_extralight"
                 />
 
             <TextView
@@ -93,7 +98,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/settingScreenUserEmailTextView"
                 android:text=""
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/encodesans_extralight"/>
 
         </RelativeLayout>
 
@@ -108,6 +114,7 @@
                 android:text="@string/settingsScreenContactFullNameTextView"
                 android:textSize="18sp"
                 android:textColor="@android:color/black"
+                android:fontFamily="@font/encodesans_extralight"
                 />
 
             <TextView
@@ -115,7 +122,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/settingScreenUserFullNameTextView"
                 android:text=""
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:fontFamily="@font/encodesans_extralight"/>
 
         </RelativeLayout>
 
@@ -132,5 +140,6 @@
         android:text="@string/settingsScreenLogoutText"
         android:textColor="@android:color/white"
         android:background="@drawable/logout_button_design"
-        android:elevation="30dp"/>
+        android:elevation="30dp"
+        android:fontFamily="@font/encodesans_extralight"/>
 </RelativeLayout>

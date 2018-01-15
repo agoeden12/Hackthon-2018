@@ -35,8 +35,7 @@ public class HomeScreen extends AppCompatActivity {
 
     private Context mContext = this;
 
-    private Integer images[] = {R.drawable.volunteer7, R.drawable.volunteer6, R.drawable.volunteer3
-            ,R.drawable.volunteer4};
+    private Integer images[] = {R.drawable.neighborhoodofgood, R.drawable.stjudelogo};
     private int currentImage = 0;
 
     private ArrayList<LocalEvents> mLocalEventsArrayList;
@@ -74,7 +73,7 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public View makeView() {
                 ImageView imageView = new ImageView(mContext);
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 return imageView;
             }
         });
@@ -98,10 +97,10 @@ public class HomeScreen extends AppCompatActivity {
         }
 
         currentImage = currentImage + changeNumber;
-        if (currentImage > 4)
+        if (currentImage > images.length)
             currentImage = 0;
         if (currentImage < 0)
-            currentImage = 4;
+            currentImage = 1;
         mImageSwitcher.setImageResource(images[currentImage]);
     }
     

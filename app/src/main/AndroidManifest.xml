@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -43,7 +43,13 @@
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".ModelLocalEvent"></activity>
+        <activity android:name=".ModelLocalEvent" />
+        <activity android:name=".CanHunger"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:parentActivityName=".HomeScreen"
+            android:screenOrientation="portrait"
+            android:label="@string/canHungerTitle"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>
     </application>
 
 </manifest>

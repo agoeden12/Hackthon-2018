@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="andrew.com.hackathon_2018.CanHunger"
+    android:clipChildren="false"
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:elevation="12dp"
+        android:id="@+id/imageCard">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="125dp">
+
+        <!--<ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:backgroundTint="@android:color/transparent"
+            android:tint="@color/darkRed"
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="50dp"
+            />-->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/canHungerMainImage"
+        android:src="@drawable/northgwinnettcoop"
+        android:foreground="@drawable/sponsor_gradient"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="@string/canHungerTitle2"
+        android:textColor="@android:color/white"
+        android:layout_alignParentBottom="true"
+        android:textStyle="bold"
+        />
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="400dp"
+        android:layout_below="@id/imageCard"
+        android:layout_margin="10dp"
+        android:elevation="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/darkGray">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="@string/northgwinnettcoopdesc"
+                android:textColor="@color/offWhite"/>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

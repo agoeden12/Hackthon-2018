@@ -4,8 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="lightBlue">#75A1CC</color>
-    <color name="lightPink">#C470CC</color>
-    <color name="indigo">#4529A0</color>
+    <color name="offWhite">#FEFEFE</color>
+    <color name="lightGray">#D4D3D9</color>
+    <color name="orange">#F55C22</color>
+    <color name="darkRed">#BB3B22</color>
+    <color name="darkGray">#28272D</color>
     <color name="linkColor">#0000EE</color>
 </resources>

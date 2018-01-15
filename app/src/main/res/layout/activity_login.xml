@@ -26,7 +26,8 @@
             android:text="@string/loginScreenTitleTextView"
             android:textSize="30sp"
             android:textAlignment="center"
-            android:textColor="@color/indigo"
+            android:textColor="@color/darkRed"
+            android:fontFamily="@font/encodesans_extralight"
             />
 
         <EditText
@@ -36,8 +37,9 @@
             android:id="@+id/loginScreenUsernameEditText"
             android:hint="@string/loginScreenEmailEditTextHint"
             android:textColor="#000000"
-            android:backgroundTint="@color/indigo"
-            android:textColorHint="@color/indigo"
+            android:backgroundTint="@color/darkRed"
+            android:textColorHint="@color/darkRed"
+            android:fontFamily="@font/encodesans_extralight"
             />
         <EditText
             android:layout_width="match_parent"
@@ -47,10 +49,11 @@
             android:hint="@string/loginScreenPasswordEditTextHint"
             android:textColor="#000000"
             android:inputType="textPassword"
-            android:backgroundTint="@color/indigo"
-            android:textColorHint="@color/indigo"
-            android:shadowColor="@color/indigo"
-            android:textColorLink="@color/indigo"
+            android:backgroundTint="@color/darkRed"
+            android:textColorHint="@color/darkRed"
+            android:shadowColor="@color/darkRed"
+            android:textColorLink="@color/darkRed"
+            android:fontFamily="@font/encodesans_extralight"
 
             />
         <Button
@@ -61,6 +64,7 @@
             android:textColor="@android:color/white"
             android:background="@drawable/login_button_design"
             android:id="@+id/loginScreenSignInButton"
+            android:fontFamily="@font/encodesans_extralight"
             android:elevation="30dp" />
     </LinearLayout>
 
@@ -73,6 +77,7 @@
         android:textColor="@color/linkColor"
         android:layout_margin="5dp"
         android:id="@+id/loginScreenNotSignedIn"
+        android:fontFamily="@font/encodesans_extralight"
         />
 
 </RelativeLayout>

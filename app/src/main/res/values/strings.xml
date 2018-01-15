@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hackathon_2018</string>
+    <string name="app_name">LetsAct</string>
     <string name="loginScreenTitleTextView"><b>Login</b></string>
     <string name="loginScreenSignInButton"><b>Sign In</b></string>
     <string name="loginScreenEmailEditTextHint">Email</string>

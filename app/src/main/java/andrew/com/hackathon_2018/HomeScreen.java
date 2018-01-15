@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -23,6 +26,7 @@ public class HomeScreen extends AppCompatActivity {
 
     public TextView hiUserTextView, settingsTextViewButton, statsTextViewButton;
     public ImageSwitcher mImageSwitcher;
+    public LinearLayout localEventLinearLayout;
 
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
@@ -59,7 +63,8 @@ public class HomeScreen extends AppCompatActivity {
         hiUserTextView = findViewById(R.id.homeScreenHiUserTextView);
         settingsTextViewButton = findViewById(R.id.homeScreenSettingsTextButton);
         statsTextViewButton = findViewById(R.id.homeScreenStatsTextButton);
-        
+        localEventLinearLayout = findViewById(R.id.homeScreenLocalEventsLinearLayout);
+
         initializeImageSwitcher();
     }
 
@@ -155,9 +160,30 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void populateLocalEvents(){
-        LocalEvents canHungerEvent = new LocalEvents();
-        canHungerEvent.setEventTitle("Can Hunger");
-        canHungerEvent.setEventDescription("");
+//        LocalEvents canHungerEvent = new LocalEvents();
+//        canHungerEvent.setEventTitle("North Gwinnett Co-Op");
+//        canHungerEvent.setEventDescription("Seeking one to two people for Saturday" +
+//                " Volunteer");
+//        canHungerEvent.setImageResourceId(R.drawable.northgwinnettcoop);
+//
+//        mLocalEventsArrayList.add(canHungerEvent);
     }
+
+/*    public void creatLocalEventCardViews(){
+        for (int arrayListIndex = 0 ; arrayListIndex < mLocalEventsArrayList.size();
+                arrayListIndex++){
+            ModelLocalEvent localEventCard = new ModelLocalEvent();
+            localEventCard.getLayoutInflater().inflate(
+                    R.layout.model_local_event_layout,
+                    localEventLinearLayout,false);
+            localEventCard.setViews(mLocalEventsArrayList.get(arrayListIndex).getEventTitle()
+            , mLocalEventsArrayList.get(arrayListIndex).getEventDescription()
+            , mLocalEventsArrayList.get(arrayListIndex).getImageResourceId());
+
+            localEventLinearLayout.addView(localEventCard);
+
+
+        }
+    }*/
 
 }

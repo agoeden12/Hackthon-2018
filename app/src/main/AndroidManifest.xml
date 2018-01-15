@@ -36,13 +36,14 @@
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-
-        <activity android:name=".Stats"
+        <activity
+            android:name=".Stats"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="Stats"
             android:parentActivityName=".HomeScreen"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
-            android:label="Stats"/>
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity android:name=".ModelLocalEvent"></activity>
     </application>
 
 </manifest>

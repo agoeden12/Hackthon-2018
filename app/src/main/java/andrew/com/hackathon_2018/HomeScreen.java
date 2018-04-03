@@ -27,6 +27,7 @@ public class HomeScreen extends AppCompatActivity {
     public TextView hiUserTextView, settingsTextViewButton, statsTextViewButton;
     public ImageSwitcher mImageSwitcher;
     public LinearLayout localEventLinearLayout;
+    public CardView canHungerEventExampleCard;
 
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
@@ -63,6 +64,7 @@ public class HomeScreen extends AppCompatActivity {
         settingsTextViewButton = findViewById(R.id.homeScreenSettingsTextButton);
         statsTextViewButton = findViewById(R.id.homeScreenStatsTextButton);
         localEventLinearLayout = findViewById(R.id.homeScreenLocalEventsLinearLayout);
+        canHungerEventExampleCard = findViewById(R.id.canHungerCard);
 
         initializeImageSwitcher();
     }
@@ -125,6 +127,13 @@ public class HomeScreen extends AppCompatActivity {
                 goToStats();
             }
         });
+
+        canHungerEventExampleCard.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){goToCanHungerExample();
+            }
+        });
+
     }
 
     private void setOnSwipeListeners(){
@@ -144,6 +153,10 @@ public class HomeScreen extends AppCompatActivity {
 
     private void goToStats(){
         startActivity(new Intent(mContext, Stats.class));
+    }
+
+    private void goToCanHungerExample(){
+        startActivity(new Intent(mContext, CanHunger.class));
     }
 
     private void setHiUserText(){

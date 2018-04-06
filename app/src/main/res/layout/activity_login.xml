@@ -40,6 +40,7 @@
             android:backgroundTint="@color/darkRed"
             android:textColorHint="@color/darkRed"
             android:fontFamily="@font/encodesans_extralight"
+            android:inputType="textEmailAddress"
             />
         <EditText
             android:layout_width="match_parent"

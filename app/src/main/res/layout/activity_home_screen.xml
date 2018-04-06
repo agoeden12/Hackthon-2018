@@ -7,7 +7,17 @@
     tools:context="andrew.com.hackathon_2018.HomeScreen"
     android:clipChildren="false"
     android:clipToPadding="false"
-    android:background="@color/offWhite">
+    android:background="@color/offWhite"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/orange"
+        android:elevation="4dp"
+        android:actionOverflowButtonColor="@drawable/ic_more_vert"
+        />
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -15,6 +25,7 @@
         android:background="@color/darkRed"
         android:elevation="8dp"
         android:id="@+id/homeScreenNavigationLinearLayout"
+        android:layout_below="@id/my_toolbar"
         >
     <LinearLayout
         android:layout_width="match_parent"

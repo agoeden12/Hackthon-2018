@@ -1,363 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeScreenDrawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="andrew.com.hackathon_2018.HomeScreen"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    android:background="@color/offWhite"
-    >
+    android:fitsSystemWindows="true">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/orange"
-        android:elevation="4dp"
-        android:actionOverflowButtonColor="@drawable/ic_more_vert"
-        />
+        android:layout_height="match_parent"
+        android:background="@color/offWhite"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        tools:context="andrew.com.hackathon_2018.HomeScreen">
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/darkRed"
-        android:elevation="8dp"
-        android:id="@+id/homeScreenNavigationLinearLayout"
-        android:layout_below="@id/my_toolbar"
-        >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        >
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/homeScreenToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            android:elevation="4dp" />
 
         <TextView
-            android:id="@+id/homeScreenSettingsTextButton"
+            android:id="@+id/homeScreenHiUserTextView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:text="@string/homeScreenSettingsTextButton"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:fontFamily="@font/encodesans_extralight" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:text="@string/homeScreenStatsTextButton"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:fontFamily="@font/encodesans_extralight"
-                android:id="@+id/homeScreenStatsTextButton"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:text="@string/homeScreenGroupTextButton"
-                android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:fontFamily="@font/encodesans_extralight" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/homeScreenJoinTextButton"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/homeScreenToolbar"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/encodesans_extralight"
-            />
+            android:forceHasOverlappingRendering="true"
+            android:text="@string/homeScreenHiUserText"
+            android:textColor="@android:color/black"
+            android:textSize="30sp" />
 
+        <ImageSwitcher
+            android:id="@+id/homeScreenSponsorImageSwitcher"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/homeScreenHiUserTextView"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="25dp"
+            android:elevation="12dp"
+            android:foreground="@drawable/sponsor_gradient" />
 
-    </LinearLayout>
-
-    </HorizontalScrollView>
-    <TextView
-        android:id="@+id/homeScreenHiUserTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/homeScreenNavigationLinearLayout"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/encodesans_extralight"
-        android:forceHasOverlappingRendering="true"
-        android:text="@string/homeScreenHiUserText"
-        android:textColor="@android:color/black"
-        android:textSize="30sp" />
-
-    <ImageSwitcher
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:elevation="12dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@id/homeScreenHiUserTextView"
-        android:id="@+id/homeScreenSponsorImageSwitcher"
-        android:foreground="@drawable/sponsor_gradient"
-        />
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_below="@id/homeScreenSponsorImageSwitcher"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:id="@+id/homeScreenLocalEventsScrollView"
-        android:clipChildren="false">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/homeScreenLocalEventsLinearLayout"
-            android:orientation="horizontal"
+        <HorizontalScrollView
+            android:id="@+id/homeScreenLocalEventsScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@id/homeScreenSponsorImageSwitcher"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="50dp"
             android:clipChildren="false">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="100dp"
+            <LinearLayout
+                android:id="@+id/homeScreenLocalEventsLinearLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:elevation="12dp"
-                android:layout_margin="5dp"
-                android:id="@+id/canHungerCard"
-                >
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                android:clipChildren="false"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/canHungerCard"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/sponsor_gradient"
-                    >
+                    android:layout_margin="5dp"
+                    android:elevation="12dp">
 
-                    <ImageView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:src="@drawable/northgwinnettcoop"
-                        android:layout_alignParentTop="true"
-                        android:id="@+id/canHungerImage"
-                        />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/sponsor_gradient">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:id="@+id/canHungerTextView"
-                        android:text="@string/canHungerTitle"
-                        android:layout_marginBottom="4dp"
-                        android:padding="4dp"
-                        android:fontFamily="@font/encodesans_extralight"/>
+                        <ImageView
+                            android:id="@+id/canHungerImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/northgwinnettcoop" />
 
-                    <!--<TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:id="@+id/modelDescriptionTextView"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@id/canHungerTextView"
-                        android:text="@string/canHungerDesc"
-                        />-->
+                        <TextView
+                            android:id="@+id/canHungerTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/encodesans_extralight"
+                            android:padding="4dp"
+                            android:text="@string/canHungerTitle"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/black"
+                            android:id="@+id/modelDescriptionTextView"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/canHungerTextView"
+                            android:text="@string/canHungerDesc"
+                            />-->
 
 
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:elevation="12dp"
-                android:layout_margin="5dp"
-                >
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <android.support.v7.widget.CardView
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/sponsor_gradient"
-                    >
+                    android:layout_margin="5dp"
+                    android:elevation="12dp">
 
-                    <ImageView
-                        android:scaleType="centerCrop"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:src="@drawable/roadcleanup"
-                        android:layout_alignParentTop="true"
-                        android:id="@+id/roadCleanUpImage"
-                        />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/sponsor_gradient">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:textColor="@android:color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:id="@+id/roadCleanUpTextView"
-                        android:text="@string/roadCleanUpTitle"
-                        android:layout_marginBottom="4dp"
-                        android:padding="4dp"
-                        android:fontFamily="@font/encodesans_extralight"/>
+                        <ImageView
+                            android:id="@+id/roadCleanUpImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentTop="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/roadcleanup" />
 
-                    <!--<TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@id/roadCleanUpTextView"
-                        android:text="@string/roadCleanUpDescription"
-                        />-->
+                        <TextView
+                            android:id="@+id/roadCleanUpTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/encodesans_extralight"
+                            android:padding="4dp"
+                            android:text="@string/roadCleanUpTitle"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/black"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/roadCleanUpTextView"
+                            android:text="@string/roadCleanUpDescription"
+                            />-->
 
 
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
+                <android.support.v7.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="12dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/sponsor_gradient"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/seniorCenterImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/sugarhillretire" />
+
+                        <TextView
+                            android:id="@+id/seniorCenterTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/encodesans_extralight"
+                            android:padding="4dp"
+                            android:text="@string/sugarHillRetireTitle"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/black"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/seniorCenterTextView"
+                            android:text="@string/sugarHillRetireDescription"
+                            />-->
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="12dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/sponsor_gradient"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/feedhomeless" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/encodesans_extralight"
+                            android:padding="4dp"
+                            android:text="@string/feedHomelessTitle"
+                            android:textColor="@android:color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <!--<TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="@android:color/black"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/seniorCenterTextView"
+                            android:text="@string/sugarHillRetireDescription"
+                            />-->
+
+
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+        <!--
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_brightness_1_black_24dp"
+                android:tint="@color/orange"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="15dp"
+                tools:layout_editor_absoluteX="50dp"
+                tools:layout_editor_absoluteY="50dp"
+                android:elevation="-15dp"/>
+        -->
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@drawable/ic_share_black_24dp"
+            android:tint="@color/orange"
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <ImageButton
+            android:id="@+id/addImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="15dp"
+            android:background="@android:color/transparent"
             android:elevation="12dp"
-            android:layout_margin="5dp"
-            >
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/sponsor_gradient"
+            android:src="@drawable/ic_add_black_24dp"
+            android:tint="@color/orange"
+            tools:layout_editor_absoluteX="50dp"
+            tools:layout_editor_absoluteY="50dp" />
 
-                >
+    </RelativeLayout>
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:src="@drawable/sugarhillretire"
-                    android:layout_alignParentTop="true"
-                    android:id="@+id/seniorCenterImage"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:layout_alignParentBottom="true"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/seniorCenterTextView"
-                    android:text="@string/sugarHillRetireTitle"
-                    android:layout_marginBottom="4dp"
-                    android:padding="4dp"
-                    android:fontFamily="@font/encodesans_extralight"/>
-
-                <!--<TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="@android:color/black"
-                    android:layout_alignParentLeft="true"
-                    android:layout_below="@id/seniorCenterTextView"
-                    android:text="@string/sugarHillRetireDescription"
-                    />-->
-
-
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:elevation="12dp"
-                android:layout_margin="5dp"
-                >
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/sponsor_gradient"
-
-                    >
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:src="@drawable/feedhomeless"
-                        android:layout_alignParentTop="true"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:layout_alignParentBottom="true"
-                        android:textColor="@android:color/white"
-                        android:text="@string/feedHomelessTitle"
-                        android:layout_marginBottom="4dp"
-                        android:padding="4dp"
-                        android:fontFamily="@font/encodesans_extralight"/>
-
-                    <!--<TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="@android:color/black"
-                        android:layout_alignParentLeft="true"
-                        android:layout_below="@id/seniorCenterTextView"
-                        android:text="@string/sugarHillRetireDescription"
-                        />-->
-
-
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
-<!--
-    <ImageView
+    <android.support.design.widget.NavigationView
+        android:id="@+id/homeScreenNavigation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_brightness_1_black_24dp"
-        android:tint="@color/orange"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="15dp"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="50dp"
-        android:elevation="-15dp"/>
--->
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/navigation_drawer"/>
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_share_black_24dp"
-        android:backgroundTint="@android:color/transparent"
-        android:tint="@color/orange"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="50dp"
-        />
-
-    <ImageButton
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="15dp"
-        android:src="@drawable/ic_add_black_24dp"
-        android:tint="@color/orange"
-        android:background="@android:color/transparent"
-        tools:layout_editor_absoluteX="50dp"
-        tools:layout_editor_absoluteY="50dp"
-        android:elevation="12dp"/>
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>

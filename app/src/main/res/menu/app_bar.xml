@@ -18,28 +18,7 @@
         app:actionViewClass="android.support.v7.widget.SearchView"
         />
 
-    <group>
-        <item
-            android:id="@+id/action_settings"
-            android:title="@string/action_settings"
-            app:showAsAction="never"
-            android:orderInCategory="1"
-            />
 
-        <item
-            android:id="@+id/action_stats"
-            android:title="@string/action_stats"
-            app:showAsAction="never"
-            android:orderInCategory="2"
-            />
-
-        <item
-            android:id="@+id/action_sign_out"
-            android:title="@string/action_sign_out"
-            app:showAsAction="never"
-            android:orderInCategory="3"
-            />
-    </group>
 
 
 </menu>

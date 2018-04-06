@@ -2,25 +2,22 @@ package andrew.com.hackathon_2018;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.support.v4.view.MenuItemCompat;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.widget.ActionMenuView;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -39,6 +36,8 @@ public class HomeScreen extends AppCompatActivity {
     public CardView canHungerEventExampleCard;
 
     public Toolbar myToolbar;
+    public NavigationView navigationView;
+    public DrawerLayout drawerLayout;
 
     public static final String TAG = "LetsAct:";
 
@@ -63,7 +62,7 @@ public class HomeScreen extends AppCompatActivity {
 
         initializeFirebaseVariables();
 
-        setOnClickListeners();
+        setListeners();
 
         setOnSwipeListeners();
 
@@ -78,31 +77,12 @@ public class HomeScreen extends AppCompatActivity {
         inflater.inflate(R.menu.app_bar, menu);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:{
-                // User chose the "Settings" item, show the app settings UI...
-                Log.i(TAG, "Settings Pressed");
-                goToSettings();
-                return true;
-            }
-
-            case R.id.action_stats:{
-                Log.i(TAG, "Stats Pressed");
-                goToStats();
-                return true;
-            }
-
-            case R.id.action_sign_out:{
-                Log.i(TAG, "Signing Out");
-                return true;
-            }
 
             default:
                 // If we got here, the user's action was not recognized.
@@ -112,13 +92,12 @@ public class HomeScreen extends AppCompatActivity {
         }
     }
 
-
     private void initializeViews(){
         hiUserTextView = findViewById(R.id.homeScreenHiUserTextView);
-        settingsTextViewButton = findViewById(R.id.homeScreenSettingsTextButton);
-        statsTextViewButton = findViewById(R.id.homeScreenStatsTextButton);
         localEventLinearLayout = findViewById(R.id.homeScreenLocalEventsLinearLayout);
         canHungerEventExampleCard = findViewById(R.id.canHungerCard);
+        drawerLayout = findViewById(R.id.homeScreenDrawer);
+        navigationView = findViewById(R.id.homeScreenNavigation);
 
         initializeToolBar();
 
@@ -126,7 +105,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     private void initializeToolBar(){
-        myToolbar = findViewById(R.id.my_toolbar);
+        myToolbar = findViewById(R.id.homeScreenToolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setNavigationIcon(R.drawable.ic_menu_black_24dp);
     }
@@ -175,7 +154,7 @@ public class HomeScreen extends AppCompatActivity {
         mDatabaseReference = mDatabase.getReference();
     }
 
-    private void setOnClickListeners(){
+    private void setListeners(){
 //        settingsTextViewButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -200,13 +179,39 @@ public class HomeScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "menu pressed");
-                if(myToolbar.isOverflowMenuShowing())
-                    myToolbar.hideOverflowMenu();
-                else
-                    myToolbar.showOverflowMenu();
+                drawerLayout.openDrawer(GravityCompat.START);
             }
         });
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        switch (menuItem.getItemId()){
+                            case R.id.action_settings:{
+                                drawerLayout.closeDrawers();
+                                Log.i(TAG, "Settings Pressed");
+                                goToSettings();
+                                return true;
+                            }
+
+                            case R.id.action_stats:{
+                                Log.i(TAG, "Stats Pressed");
+                                goToStats();
+                                return true;
+                            }
+
+                            case R.id.action_sign_out:{
+                                Log.i(TAG, "Signing Out");
+                                return true;
+                            }
+
+                            default:{
+                                return true;
+                            }
+                        }
+
+                    }
+                });
     }
 
     private void setOnSwipeListeners(){
@@ -254,21 +259,21 @@ public class HomeScreen extends AppCompatActivity {
 //        mLocalEventsArrayList.add(canHungerEvent);
     }
 
-/*    public void creatLocalEventCardViews(){
-        for (int arrayListIndex = 0 ; arrayListIndex < mLocalEventsArrayList.size();
-                arrayListIndex++){
-            ModelLocalEvent localEventCard = new ModelLocalEvent();
-            localEventCard.getLayoutInflater().inflate(
-                    R.layout.model_local_event_layout,
-                    localEventLinearLayout,false);
-            localEventCard.setViews(mLocalEventsArrayList.get(arrayListIndex).getEventTitle()
-            , mLocalEventsArrayList.get(arrayListIndex).getEventDescription()
-            , mLocalEventsArrayList.get(arrayListIndex).getImageResourceId());
-
-            localEventLinearLayout.addView(localEventCard);
-
-
-        }
-    }*/
+//    public void creatLocalEventCardViews(){
+//        for (int arrayListIndex = 0 ; arrayListIndex < mLocalEventsArrayList.size();
+//                arrayListIndex++){
+//            ModelLocalEvent localEventCard = new ModelLocalEvent();
+//            localEventCard.getLayoutInflater().inflate(
+//                    R.layout.model_local_event_layout,
+//                    localEventLinearLayout,false);
+//            localEventCard.setViews(mLocalEventsArrayList.get(arrayListIndex).getEventTitle()
+//            , mLocalEventsArrayList.get(arrayListIndex).getEventDescription()
+//            , mLocalEventsArrayList.get(arrayListIndex).getImageResourceId());
+//
+//            localEventLinearLayout.addView(localEventCard);
+//
+//
+//        }
+//    }
 
 }

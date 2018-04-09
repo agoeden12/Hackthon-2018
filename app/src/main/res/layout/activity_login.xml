@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="andrew.com.hackathon_2018.LoginActivity"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    >
 
     <ImageSwitcher
         android:layout_width="match_parent"

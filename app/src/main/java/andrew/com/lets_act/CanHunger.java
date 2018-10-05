@@ -1,13 +1,13 @@
-package andrew.com.hackathon_2018;
+package andrew.com.lets_act;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Stats extends AppCompatActivity {
+public class CanHunger extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        setContentView(R.layout.activity_can_hunger);
     }
 }

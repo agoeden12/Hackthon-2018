@@ -1,10 +1,6 @@
-package andrew.com.hackathon_2018;
+package andrew.com.lets_act;
 
-/**
- * Created by andre on 1/14/2018.
- */
-
-public class LocalEvents {
+public class Events {
 
     private String mEventTitle;
     private String mEventDescription;
@@ -12,11 +8,11 @@ public class LocalEvents {
     private int mImageResourceId = NO_IMAGE_PROVIDED;
     private static final int NO_IMAGE_PROVIDED = -1;
 
-    public LocalEvents(){
+    public Events(){
 
     }
 
-    public LocalEvents(String eventTitle, String eventDescription, int imageResourceId) {
+    public Events(String eventTitle, String eventDescription, int imageResourceId) {
         mEventTitle = eventTitle;
         mEventDescription = eventDescription;
         mImageResourceId = imageResourceId;

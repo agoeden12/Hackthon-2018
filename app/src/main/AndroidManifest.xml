@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="andrew.com.hackathon_2018">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="andrew.com.lets_act">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,9 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="true"
+        tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".LoginActivity"
+            android:name="andrew.com.lets_act.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -22,31 +25,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeScreen"
+            android:name="andrew.com.lets_act.HomeScreen"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="andrew.com.lets_act.SignUp"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SignUp"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Settings"
+            android:name="andrew.com.lets_act.Settings"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Settings"
-            android:parentActivityName=".HomeScreen"
+            android:parentActivityName="andrew.com.lets_act.HomeScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
-            android:name=".Stats"
+            android:name="andrew.com.lets_act.Stats"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Stats"
-            android:parentActivityName=".HomeScreen"
+            android:parentActivityName="andrew.com.lets_act.HomeScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".ModelLocalEvent" />
-        <activity android:name=".CanHunger"
+        <activity android:name="andrew.com.lets_act.ModelLocalEvent" />
+        <activity android:name="andrew.com.lets_act.CanHunger"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName=".HomeScreen"
+            android:parentActivityName="andrew.com.lets_act.HomeScreen"
             android:screenOrientation="portrait"
             android:label="@string/canHungerTitle"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>

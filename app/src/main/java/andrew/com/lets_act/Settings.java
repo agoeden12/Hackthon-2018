@@ -1,4 +1,4 @@
-package andrew.com.hackathon_2018;
+package andrew.com.lets_act;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,13 +11,17 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class Settings extends AppCompatActivity {
 
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
 
-    public TextView userEmailTextView, userFullNameTextView;
-    public Button logoutButton;
+    @BindView(R.id.settingScreenUserEmailTextView) TextView userEmailTextView;
+    @BindView(R.id.settingScreenUserFullNameTextView) TextView userFullNameTextView;
+    @BindView(R.id.logoutButton) Button logoutButton;
 
     private Context mContext = this;
 
@@ -26,7 +30,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        initializeViews();
+        ButterKnife.bind(this);
 
         initializeFirebaseVariables();
 
@@ -35,24 +39,13 @@ public class Settings extends AppCompatActivity {
         setUserInformation();
     }
 
-    private void initializeViews(){
-        logoutButton = findViewById(R.id.logoutButton);
-        userEmailTextView = findViewById(R.id.settingScreenUserEmailTextView);
-        userFullNameTextView = findViewById(R.id.settingScreenUserFullNameTextView);
-    }
-
     private void initializeFirebaseVariables(){
         mFirebaseAuth = FirebaseAuth.getInstance();
         mUser = mFirebaseAuth.getCurrentUser();
     }
 
     private void setOnClickListeners(){
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logoutUser();
-            }
-        });
+        logoutButton.setOnClickListener(view -> logoutUser());
     }
 
     private void setUserInformation(){

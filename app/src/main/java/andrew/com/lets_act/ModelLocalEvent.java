@@ -1,4 +1,4 @@
-package andrew.com.hackathon_2018;
+package andrew.com.lets_act;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;

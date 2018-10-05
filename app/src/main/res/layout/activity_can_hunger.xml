@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="andrew.com.hackathon_2018.CanHunger"
+    tools:context="andrew.com.lets_act.CanHunger"
     android:clipChildren="false"
     >
     <android.support.v7.widget.CardView

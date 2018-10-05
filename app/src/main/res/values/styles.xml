@@ -12,15 +12,15 @@
         <item name="android:fitsSystemWindows">false</item>
     </style>
 
-    <style name="toolBarStyle" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/orange</item>
-        <item name="colorPrimaryDark">@color/darkRed</item>
-        <item name="colorAccent">@color/lightGray</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@color/orange</item>
-        <item name="windowActionBarOverlay">true</item>
-        <item name="android:fitsSystemWindows">false</item>
-    </style>
+    <!--<style name="toolBarStyle" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--<item name="colorPrimary">@color/orange</item>-->
+        <!--<item name="colorPrimaryDark">@color/darkRed</item>-->
+        <!--<item name="colorAccent">@color/lightGray</item>-->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="android:statusBarColor">@color/orange</item>-->
+        <!--<item name="windowActionBarOverlay">true</item>-->
+        <!--<item name="android:fitsSystemWindows">false</item>-->
+    <!--</style>-->
 
 
     <!--<style name="MyTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">-->

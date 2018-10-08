@@ -146,7 +146,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     private boolean doesSchoolCodeExist(String schoolCode){
-        mDatabaseReference.child("0").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabaseReference.child("Local").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.hasChild(schoolCode)){

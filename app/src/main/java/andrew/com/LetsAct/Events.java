@@ -1,21 +1,17 @@
-package andrew.com.lets_act;
+package andrew.com.LetsAct;
 
 public class Events {
 
-    private String mEventTitle;
-    private String mEventDescription;
-
-    private int mImageResourceId = NO_IMAGE_PROVIDED;
-    private static final int NO_IMAGE_PROVIDED = -1;
+    private String mEventTitle,  mEventDescription, mImageUrl;
 
     public Events(){
 
     }
 
-    public Events(String eventTitle, String eventDescription, int imageResourceId) {
+    public Events(String eventTitle, String eventDescription, String imageUrl) {
         mEventTitle = eventTitle;
         mEventDescription = eventDescription;
-        mImageResourceId = imageResourceId;
+        mImageUrl = imageUrl;
     }
 
     public void setEventTitle(String eventTitle) {
@@ -26,8 +22,8 @@ public class Events {
         mEventDescription = eventDescription;
     }
 
-    public void setImageResourceId(int imageResourceId) {
-        mImageResourceId = imageResourceId;
+    public void setImageResourceId(String imageUrl) {
+        mImageUrl = imageUrl;
     }
 
     public String getEventTitle() {
@@ -38,8 +34,8 @@ public class Events {
         return mEventDescription;
     }
 
-    public int getImageResourceId() {
-        return mImageResourceId;
+    public String getImageUrl() {
+        return mImageUrl;
     }
 
 }

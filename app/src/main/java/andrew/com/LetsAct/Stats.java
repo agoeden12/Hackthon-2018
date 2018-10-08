@@ -1,13 +1,13 @@
-package andrew.com.lets_act;
+package andrew.com.LetsAct;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CanHunger extends AppCompatActivity {
+public class Stats extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_can_hunger);
+        setContentView(R.layout.activity_stats);
     }
 }

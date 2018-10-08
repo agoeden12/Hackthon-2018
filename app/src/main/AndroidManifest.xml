@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="andrew.com.lets_act">
+    package="andrew.com.LetsAct">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,7 +15,7 @@
         android:fullBackupContent="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="andrew.com.lets_act.LoginActivity"
+            android:name="andrew.com.LetsAct.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -25,32 +25,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="andrew.com.lets_act.HomeScreen"
+            android:name="andrew.com.LetsAct.HomeScreen"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name="andrew.com.lets_act.SignUp"
+            android:name="andrew.com.LetsAct.SignUp"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name="andrew.com.lets_act.Settings"
+            android:name="andrew.com.LetsAct.Settings"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Settings"
-            android:parentActivityName="andrew.com.lets_act.HomeScreen"
+            android:parentActivityName="andrew.com.LetsAct.HomeScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity
-            android:name="andrew.com.lets_act.Stats"
+            android:name="andrew.com.LetsAct.Stats"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Stats"
-            android:parentActivityName="andrew.com.lets_act.HomeScreen"
+            android:parentActivityName="andrew.com.LetsAct.HomeScreen"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name="andrew.com.lets_act.ModelLocalEvent" />
-        <activity android:name="andrew.com.lets_act.CanHunger"
+        <activity android:name="andrew.com.LetsAct.ModelLocalEvent" />
+        <activity android:name="andrew.com.LetsAct.CanHunger"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:parentActivityName="andrew.com.lets_act.HomeScreen"
+            android:parentActivityName="andrew.com.LetsAct.HomeScreen"
             android:screenOrientation="portrait"
             android:label="@string/canHungerTitle"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"/>

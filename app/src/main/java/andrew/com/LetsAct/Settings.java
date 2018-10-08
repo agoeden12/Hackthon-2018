@@ -1,22 +1,24 @@
-package andrew.com.lets_act;
+package andrew.com.LetsAct;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class Settings extends AppCompatActivity {
 
-    public FirebaseAuth mFirebaseAuth;
+    private static final String TAG = "Settings";
     public FirebaseUser mUser;
 
     @BindView(R.id.settingScreenUserEmailTextView) TextView userEmailTextView;
@@ -34,14 +36,13 @@ public class Settings extends AppCompatActivity {
 
         initializeFirebaseVariables();
 
-        setOnClickListeners();
-
         setUserInformation();
+
+        setOnClickListeners();
     }
 
     private void initializeFirebaseVariables(){
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mUser = mFirebaseAuth.getCurrentUser();
+        mUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     private void setOnClickListeners(){
@@ -49,12 +50,14 @@ public class Settings extends AppCompatActivity {
     }
 
     private void setUserInformation(){
-        userEmailTextView.setText(mUser.getEmail());
-        userFullNameTextView.setText(mUser.getDisplayName());
+        Log.d(TAG, "setUserInformation: " +mUser.getEmail());
+        Log.d(TAG, "setUserInformation: " +mUser.getDisplayName());
+        userEmailTextView.setText(Objects.requireNonNull(mUser.getEmail()));
+        userFullNameTextView.setText(Objects.requireNonNull(mUser.getDisplayName()));
     }
 
     private void logoutUser(){
-        mFirebaseAuth.signOut();
+        FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(mContext, LoginActivity.class));
     }
 }

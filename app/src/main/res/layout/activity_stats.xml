@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="andrew.com.lets_act.Stats"
+    tools:context="andrew.com.LetsAct.Stats"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
-    android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="wrap_content"

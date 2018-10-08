@@ -1,4 +1,4 @@
-package andrew.com.lets_act;
+package andrew.com.LetsAct;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

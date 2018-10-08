@@ -4,84 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="andrew.com.lets_act.LoginActivity"
     android:clipChildren="false"
-    android:clipToPadding="false"
-    android:fitsSystemWindows="true"
-    >
+    tools:context="andrew.com.LetsAct.LoginActivity">
 
     <ImageSwitcher
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
         android:id="@+id/loginScreenImageSwitcher"
-        android:elevation="4dp"/>
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:elevation="4dp" />
 
     <LinearLayout
+        android:id="@+id/loginLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/loginLinearLayout"
-        android:orientation="vertical"
         android:layout_centerInParent="true"
+        android:orientation="vertical"
         android:padding="36dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/encodesans_extralight"
             android:text="@string/loginScreenTitleTextView"
-            android:textSize="30sp"
             android:textAlignment="center"
             android:textColor="@color/darkRed"
-            android:fontFamily="@font/encodesans_extralight"
-            />
+            android:textSize="30sp" />
 
-        <EditText
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/login_username_image"
-            android:id="@+id/loginScreenUsernameEditText"
-            android:hint="@string/loginScreenEmailEditTextHint"
-            android:textColor="#000000"
             android:backgroundTint="@color/darkRed"
-            android:textColorHint="@color/darkRed"
-            android:fontFamily="@font/encodesans_extralight"
-            android:inputType="textEmailAddress"
-            />
-        <EditText
+            android:textColorHint="@color/darkRed">
+
+            <EditText
+                android:id="@+id/loginScreenUsernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/darkRed"
+                android:drawableStart="@drawable/login_username_image"
+                android:fontFamily="@font/encodesans_extralight"
+                android:hint="@string/loginScreenEmailEditTextHint"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000"
+                android:textColorHint="@color/darkRed" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/login_password_image"
-            android:id="@+id/loginScreenPasswordEditText"
-            android:hint="@string/loginScreenPasswordEditTextHint"
-            android:textColor="#000000"
-            android:inputType="textPassword"
             android:backgroundTint="@color/darkRed"
-            android:textColorHint="@color/darkRed"
-            android:shadowColor="@color/darkRed"
-            android:textColorLink="@color/darkRed"
-            android:fontFamily="@font/encodesans_extralight"
+            android:textColorHint="@color/darkRed">
 
-            />
+            <EditText
+                android:id="@+id/loginScreenPasswordEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/darkRed"
+                android:drawableStart="@drawable/login_password_image"
+                android:fontFamily="@font/encodesans_extralight"
+                android:hint="@string/loginScreenPasswordEditTextHint"
+                android:inputType="textPassword"
+                android:textColor="#000000"
+                android:textColorHint="@color/darkRed" />
+        </android.support.design.widget.TextInputLayout>
+
         <Button
+            android:id="@+id/loginScreenSignInButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
-            android:text="@string/loginScreenSignInButton"
-            android:textColor="@android:color/white"
             android:background="@drawable/login_button_design"
-            android:id="@+id/loginScreenSignInButton"
+            android:elevation="30dp"
             android:fontFamily="@font/encodesans_extralight"
-            android:elevation="30dp" />
+            android:text="@string/loginScreenSignInButton"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <TextView
+        android:id="@+id/loginScreenNotSignedUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:textAlignment="center"
-        android:text="@string/loginScreenNotSignedUpText"
-        android:textColor="@color/linkColor"
         android:layout_margin="5dp"
-        android:id="@+id/loginScreenNotSignedUp"
         android:fontFamily="@font/encodesans_extralight"
-        />
+        android:text="@string/loginScreenNotSignedUpText"
+        android:textAlignment="center"
+        android:textColor="@color/linkColor" />
 
 </RelativeLayout>

@@ -1,11 +1,13 @@
-package andrew.com.lets_act;
+package andrew.com.LetsAct;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,14 +17,18 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SignUp extends AppCompatActivity {
 
+    private static final String TAG = "SignUp";
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
     public DatabaseReference mDatabaseReference;
@@ -38,6 +44,7 @@ public class SignUp extends AppCompatActivity {
     private Context mContext = this;
 
     public String emailText, passwordText, schoolCodeText, displayNameText;
+    public boolean doesSchoolExist;
     private Integer images[] = {R.drawable.volunteer7, R.drawable.volunteer6, R.drawable.volunteer3
             ,R.drawable.volunteer4};
     private int currentImage = 0;
@@ -95,25 +102,23 @@ public class SignUp extends AppCompatActivity {
 
     private void signUpForApp(){
 
-        setEmailAndPasswordText();
+        setUserTextVariables();
 
-        if (checkIfEditTextViewsAreEmpty()){
-
-            mDatabaseReference.child(schoolCodeText);
+        if (checkIfEditTextViewsAreEmpty() && doesSchoolCodeExist(schoolCodeText)){
             mFirebaseAuth.createUserWithEmailAndPassword(emailText, passwordText)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         createDatabaseActivity();
                         goToHomeScreen();
                     } else {
-                        Toast.makeText(mContext, "Authentication failed.",
+                        Toast.makeText(mContext, "Sign Up Failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
         }
     }
 
-    private void setEmailAndPasswordText(){
+    private void setUserTextVariables(){
         emailText = usernameEditText.getText().toString().trim();
         passwordText  = passwordEditText.getText().toString().trim();
         schoolCodeText = schoolCodeEditText.getText().toString().trim();
@@ -130,12 +135,34 @@ public class SignUp extends AppCompatActivity {
     }
 
     private void createDatabaseActivity(){
-        UserIdHandler userIdHandler = new UserIdHandler(emailText, passwordText);
-        mDatabaseReference.child(schoolCodeText).child(mUser.getUid()).push().setValue(userIdHandler);
+        mUser = mFirebaseAuth.getCurrentUser();
+        mDatabaseReference.child("Users").child(mUser.getUid()).child("User Information").setValue(mFirebaseAuth.getCurrentUser());
+        mDatabaseReference.child("Users").child(mUser.getUid()).child("school_code").setValue(schoolCodeText);
         UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
                 .setDisplayName(displayNameText).build();
         mUser.updateProfile(profileChangeRequest);
         mUser.sendEmailVerification();
+
+    }
+
+    private boolean doesSchoolCodeExist(String schoolCode){
+        mDatabaseReference.child("0").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(schoolCode)){
+                    doesSchoolExist = true;
+                }
+                else{
+                    doesSchoolExist = false;
+                    Toast.makeText(mContext, "Invalid School Code", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return doesSchoolExist;
     }
 
     private void goToHomeScreen(){

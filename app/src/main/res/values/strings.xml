@@ -58,4 +58,7 @@
     <string name="feedHomelessTitle">Feed The Homeless</string>
 
     <string name="northgwinnettcoopdesc">The North Gwinnett Co-Operative Ministries is a faith based organization that provides food, clothing, utility and prescription medication assistance to residents of Buford, Sugar Hill and Suwanee, GA. Please see "Our Services" page for more information.</string>
+    <string name="create_event_FAB">create event</string>
+    <string name="sponsor_events_header">Sponsor Events</string>
+    <string name="local_events_header">Local Events</string>
 </resources>

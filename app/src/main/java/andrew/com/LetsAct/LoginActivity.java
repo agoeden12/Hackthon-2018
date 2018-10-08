@@ -1,4 +1,4 @@
-package andrew.com.lets_act;
+package andrew.com.LetsAct;
 
 import android.content.Context;
 import android.content.Intent;

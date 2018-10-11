@@ -1,6 +1,5 @@
 package andrew.com.LetsAct;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -12,14 +11,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageSwitcher;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,14 +28,12 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeScreen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
-    @BindView(R.id.homeScreenHiUserTextView)
-    TextView hiUserTextView;
     @BindView(R.id.homeScreenSponsorEvents)
-    ImageSwitcher imageSwitcher;
+    RecyclerView sponsorEventsRecycler;
     @BindView(R.id.homeScreenToolbar)
     Toolbar myToolbar;
     @BindView(R.id.homeScreenNavigation)
@@ -53,15 +45,11 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     public static final String TAG = "LetsAct";
 
-//    private FusedLocationProviderClient mFusedLocationClient;
+    private Intent intent = new Intent();
 
     public FirebaseAuth mFirebaseAuth;
     public FirebaseUser mUser;
     public DatabaseReference mDatabaseReference;
-
-    //TODO: Use firebase storage with database to handle events and image arrays
-    private Integer images[] = {R.drawable.neighborhoodofgood, R.drawable.stjudelogo};
-    private int currentImage = 0;
 
     private Context mContext = this;
 
@@ -74,16 +62,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         setContentView(R.layout.activity_home_screen);
 
         ButterKnife.bind(this);
-        initializeToolBar();
-        initializeImageSwitcher();
         initializeFirebaseVariables();
-        setOnSwipeListeners();
         setHiUserText();
 
         createLocalEvents();
         createSponsorEvents();
 
         addDatabaseEventListeners();
+        initializeToolBar();
     }
 
     @Override
@@ -111,37 +97,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void initializeImageSwitcher() {
-        imageSwitcher.setFactory(() -> {
-            ImageView imageView = new ImageView(mContext);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            return imageView;
-        });
-
-        imageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(
-                mContext, android.R.anim.slide_in_left));
-        imageSwitcher.setInAnimation(AnimationUtils.loadAnimation(
-                mContext, android.R.anim.slide_out_right));
-
-        setCurrentImage(0);
-    }
-
-    private void setCurrentImage(int changeNumber) {
-        if (changeNumber == 1) {
-            imageSwitcher.setInAnimation(AnimationUtils.loadAnimation(
-                    mContext, android.R.anim.slide_in_left));
-            imageSwitcher.setOutAnimation(AnimationUtils.loadAnimation(
-                    mContext, android.R.anim.slide_out_right));
-        }
-
-        currentImage = currentImage + changeNumber;
-        if (currentImage > images.length)
-            currentImage = 0;
-        if (currentImage < 0)
-            currentImage = 1;
-        imageSwitcher.setImageResource(images[currentImage]);
-    }
-
     private void initializeFirebaseVariables() {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mUser = mFirebaseAuth.getCurrentUser();
@@ -166,29 +121,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
-    private void setOnSwipeListeners() {
-        imageSwitcher.setOnTouchListener(new OnSwipeTouchListener(mContext) {
-            public void onSwipeRight() {
-                setCurrentImage(1);
-            }
-
-            public void onSwipeLeft() {
-                setCurrentImage(-1);
-            }
-        });
-    }
-
-    //TODO: Implement a better method for this.
     private void setHiUserText() {
         String displayName = mUser.getDisplayName();
         if (displayName != null) {
-
-            String hiUserText = hiUserTextView.getText().toString().trim();
-            hiUserText = hiUserText.substring(0, hiUserText.length() - 1)
-                    + displayName
-                    + hiUserText.substring(hiUserText.length() - 1);
-            hiUserTextView.setText(hiUserText);
+            myToolbar.setTitle("Welcome " + displayName + "!");
         }
     }
 
@@ -204,13 +140,13 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                 }
                 localEventsRecycler.setAdapter(new EventAdapter(localEventsList, mContext));
 
-//                sponsorEventsList.clear();
-//                result =
-//                        dataSnapshot.child("Sponsor").child(getSchoolCode(dataSnapshot)).getChildren();
-//                for (DataSnapshot itemId : result) {
-//                    sponsorEventsList.add(setEventInformation(itemId));
-//                }
-//                localEventsRecycler.setAdapter(new EventAdapter(sponsorEventsList, mContext));
+                sponsorEventsList.clear();
+                result =
+                        dataSnapshot.child("Sponsor").child(getSchoolCode(dataSnapshot)).getChildren();
+                for (DataSnapshot itemId : result) {
+                    sponsorEventsList.add(setEventInformation(itemId));
+                }
+                sponsorEventsRecycler.setAdapter(new EventAdapter(sponsorEventsList, mContext));
             }
 
             @Override
@@ -223,7 +159,6 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         return Objects.requireNonNull(dataSnapshot.child("Users").child(mUser.getUid()).child("school_code").getValue()).toString();
     }
 
-    //TODO: use firebase Database for local events using horizontal RecyclerView
     private void createLocalEvents() {
         localEventsRecycler.setLayoutManager(
                 new LinearLayoutManager(mContext,
@@ -233,11 +168,11 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     }
 
     private void createSponsorEvents() {
-//        localEventsRecycler.setLayoutManager(
-//                new LinearLayoutManager(mContext,
-//                        LinearLayoutManager.HORIZONTAL, false)
-//        );
-//        localEventsRecycler.setAdapter(new EventAdapter(sponsorEventsList, mContext));
+        sponsorEventsRecycler.setLayoutManager(
+                new LinearLayoutManager(mContext,
+                        LinearLayoutManager.HORIZONTAL, false)
+        );
+        sponsorEventsRecycler.setAdapter(new EventAdapter(sponsorEventsList, mContext));
     }
 
     private Events setEventInformation(DataSnapshot itemId) {
@@ -250,6 +185,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         } catch (NullPointerException e) {
             return new Events();
         }
+    }
+
+    @OnClick(R.id.share_app_FAB)
+    public void shareApp(){
+        intent.setAction(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_TEXT, Constants.SHARE_CONTENT);
+        intent.setType("text/plain");
+        startActivity(Intent.createChooser(intent, "Share With"));
     }
 
 }

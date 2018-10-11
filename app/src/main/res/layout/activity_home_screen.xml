@@ -7,54 +7,41 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:clipChildren="false"
+    android:background="@drawable/home_background"
     tools:context="andrew.com.LetsAct.HomeScreen">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:clipToPadding="false">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/homeScreenToolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp" />
-
-        <TextView
-            android:id="@+id/homeScreenHiUserTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/homeScreenToolbar"
-            android:layout_margin="14dp"
-            android:fontFamily="@font/encodesans_extralight"
-            android:text="@string/homeScreenHiUserText"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:background="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/sponsor_events_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/homeScreenHiUserTextView"
+            android:layout_below="@id/homeScreenToolbar"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/encodesans_extralight"
+            android:fontFamily="@font/encodesans_semibold"
             android:text="@string/sponsor_events_header"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
-        <ImageSwitcher
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/homeScreenSponsorEvents"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_below="@id/sponsor_events_header"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="6dp"
             android:layout_marginRight="15dp"
-            android:elevation="12dp" />
+            android:layout_marginBottom="18dp" />
 
         <TextView
             android:id="@+id/local_events_header"
@@ -63,15 +50,15 @@
             android:layout_below="@id/homeScreenSponsorEvents"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/encodesans_extralight"
+            android:fontFamily="@font/encodesans_semibold"
             android:text="@string/local_events_header"
-            android:textColor="@android:color/black"
-            android:textSize="24sp" />
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/local_events_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_below="@id/local_events_header"
             android:layout_marginStart="15dp"
             android:layout_marginTop="6dp"

@@ -180,7 +180,8 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
             return new Events(
                     Objects.requireNonNull(itemId.child("title").getValue()).toString(),
                     Objects.requireNonNull(itemId.child("description").getValue()).toString(),
-                    Objects.requireNonNull(itemId.child("imageUrl").getValue()).toString()
+                    Objects.requireNonNull(itemId.child("imageUrl").getValue()).toString(),
+                    itemId.getRef()
             );
         } catch (NullPointerException e) {
             return new Events();

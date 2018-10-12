@@ -61,4 +61,5 @@
     <string name="create_event_FAB">create event</string>
     <string name="sponsor_events_header">Sponsor Events</string>
     <string name="local_events_header">Local Events</string>
+    <string name="join_event_button">Join Event</string>
 </resources>

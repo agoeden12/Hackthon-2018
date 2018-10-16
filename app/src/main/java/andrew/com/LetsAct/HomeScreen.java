@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -42,6 +45,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
     DrawerLayout drawerLayout;
     @BindView(R.id.local_events_recycler_view)
     RecyclerView localEventsRecycler;
+    @BindView(R.id.my_events_recycler_view)
+    RecyclerView myEventsRecycler;
+    @BindView(R.id.my_events_header)
+    TextView myEventsTextView;
 
     public static final String TAG = "LetsAct";
 
@@ -55,6 +62,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
     private ArrayList<Events> localEventsList = new ArrayList<>();
     private ArrayList<Events> sponsorEventsList = new ArrayList<>();
+    private ArrayList<Events> myEventsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +75,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
 
         createLocalEvents();
         createSponsorEvents();
+        createMyEvents();
 
         addDatabaseEventListeners();
         initializeToolBar();
@@ -147,6 +156,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
                     sponsorEventsList.add(setEventInformation(itemId));
                 }
                 sponsorEventsRecycler.setAdapter(new EventAdapter(sponsorEventsList, mContext));
+
+                myEventsList.clear();
+                result =
+                        dataSnapshot.child("Users").child(mUser.getUid()).child("My Events").getChildren();
+                for (DataSnapshot itemId : result) {
+                    myEventsList.add(setMyEvents(itemId));
+                }
+                myEventsRecycler.setAdapter(new MyEventAdapter(myEventsList, mContext));
             }
 
             @Override
@@ -175,6 +192,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         sponsorEventsRecycler.setAdapter(new EventAdapter(sponsorEventsList, mContext));
     }
 
+    private void createMyEvents() {
+        myEventsRecycler.setLayoutManager(
+                new LinearLayoutManager(mContext,
+                        LinearLayoutManager.HORIZONTAL, false)
+        );
+        myEventsRecycler.setAdapter(new MyEventAdapter(myEventsList, mContext));
+    }
+
     private Events setEventInformation(DataSnapshot itemId) {
         try {
             return new Events(
@@ -188,6 +213,14 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         }
     }
 
+    private Events setMyEvents(DataSnapshot itemId){
+        try{
+            return new Events(itemId.getRef());
+        } catch (NullPointerException e){
+            return new Events();
+        }
+    }
+
     @OnClick(R.id.share_app_FAB)
     public void shareApp(){
         intent.setAction(Intent.ACTION_SEND);
@@ -195,5 +228,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationView.OnNa
         intent.setType("text/plain");
         startActivity(Intent.createChooser(intent, "Share With"));
     }
+
+    @OnClick(R.id.create_event_FAB)
+    public void createEvent(){
+        startActivity(new Intent(mContext, CreateEvent.class));
+    }
+
+
 
 }

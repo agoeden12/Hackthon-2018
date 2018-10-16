@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/darkRed"
+        android:textColorHint="@color/darkRed">
+
+        <EditText
+            android:id="@+id/create_event_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/darkRed"
+            android:fontFamily="@font/encodesans_extralight"
+            android:hint=""
+            android:textColorHint="@color/darkRed" />
+    </android.support.design.widget.TextInputLayout>
+</android.support.constraint.ConstraintLayout>

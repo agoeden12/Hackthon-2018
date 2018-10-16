@@ -11,6 +11,10 @@ public class Events {
 
     }
 
+    public Events(DatabaseReference databaseReference) {
+        mDatabaseReference = databaseReference;
+    }
+
     public Events(String eventTitle, String eventDescription, String imageUrl, DatabaseReference databaseReference) {
         mEventTitle = eventTitle;
         mEventDescription = eventDescription;

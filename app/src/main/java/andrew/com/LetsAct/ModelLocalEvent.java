@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -41,15 +42,17 @@ public class ModelLocalEvent extends AppCompatActivity implements OnMapReadyCall
     TextView eventTitleTextView;
     @BindView(R.id.modelDescriptionTextView)
     TextView eventDescriptionTextView;
-    @BindView(R.id.model_date_text_view) TextView eventDateTextView;
-    @BindView(R.id.model_company_text_view) TextView eventCompanyTextView;
-    @BindView(R.id.model_contact_text_view) TextView eventContactTextView;
+    @BindView(R.id.model_date_text_view)
+    TextView eventDateTextView;
+    @BindView(R.id.model_company_text_view)
+    TextView eventCompanyTextView;
+    @BindView(R.id.model_contact_text_view)
+    TextView eventContactTextView;
     @BindView(R.id.modelMainImage)
     ImageView eventImage;
     @BindView(R.id.event_toolbar)
     Toolbar eventToolbar;
 
-    private GoogleMap mMap;
     private LatLng mLocation;
     private FirebaseUser mUser;
     private DatabaseReference databaseReference;
@@ -72,46 +75,50 @@ public class ModelLocalEvent extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mMap.addMarker(new MarkerOptions().position(mLocation));
-        mMap.setMinZoomPreference(9);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
+        Log.d(TAG, "onMapReady: called");
+        googleMap.addMarker(new MarkerOptions().position(mLocation));
+        googleMap.setMinZoomPreference(9);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(mLocation));
     }
 
-    public void getLocationFromAddress(String strAddress){
-
-        Geocoder coder = new Geocoder(this);
-        List<Address> address;
+    public void getLocationFromAddress(String strAddress) {
 
         try {
-            address = coder.getFromLocationName(strAddress,5);
-            if (address!=null) {
-                Address location = address.get(0);
-                location.getLatitude();
-                location.getLongitude();
+            Geocoder coder = new Geocoder(this);
+            List<Address> address;
 
-                mLocation = new LatLng(location.getLatitude(), location.getLongitude());
+            try {
+                address = coder.getFromLocationName(strAddress, 5);
+                if (address != null) {
+                    Address location = address.get(0);
+                    location.getLatitude();
+                    location.getLongitude();
+
+                    mLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e){
+
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            Objects.requireNonNull(mapFragment).getMapAsync(this);
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        Objects.requireNonNull(mapFragment).getMapAsync(this);
     }
 
     public void getIntents() {
-        try{
+        try {
             databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl(
                     getIntent().getStringExtra("Event_Reference")
             );
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
 
-    public void setDatabaseListener(){
+    public void setDatabaseListener() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -131,10 +138,10 @@ public class ModelLocalEvent extends AppCompatActivity implements OnMapReadyCall
                     Objects.requireNonNull(itemId.child("title").getValue()).toString(),
                     Objects.requireNonNull(itemId.child("description").getValue()).toString(),
                     Objects.requireNonNull(itemId.child("imageUrl").getValue()).toString(),
-                    itemId.child("location").getValue().toString(),
-                    itemId.child("date").getValue().toString(),
-                    itemId.child("company").getValue().toString(),
-                    itemId.child("contactEmail").getValue().toString(),
+                    Objects.requireNonNull(itemId.child("location").getValue()).toString(),
+                    Objects.requireNonNull(itemId.child("date").getValue()).toString(),
+                    Objects.requireNonNull(itemId.child("company").getValue()).toString(),
+                    Objects.requireNonNull(itemId.child("contactEmail").getValue()).toString(),
                     itemId.getRef()
             );
         } catch (NullPointerException e) {
@@ -142,7 +149,7 @@ public class ModelLocalEvent extends AppCompatActivity implements OnMapReadyCall
         }
     }
 
-    private void loadViews(Events event){
+    private void loadViews(Events event) {
         Log.d(TAG, "loadViews: " + event.getImageUrl());
         eventTitleTextView.setText(event.getEventTitle());
         eventDescriptionTextView.setText(event.getEventDescription());
@@ -154,7 +161,19 @@ public class ModelLocalEvent extends AppCompatActivity implements OnMapReadyCall
     }
 
     @OnClick(R.id.join_event_button)
-    public void joinEvent(){
+    public void joinEvent() {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference userReference = firebaseDatabase.getReference().child("Users").child(mUser.getUid());
+        userReference.child("My Events").child(eventTitleTextView.getText().toString().trim()).setValue(databaseReference.toString());
 
+        databaseReference.child("Users").child(mUser.getUid()).setValue(mUser.getUid());
+
+        goToHome();
+    }
+
+    private void goToHome(){
+        onBackPressed();
+        Toast.makeText(mContext, "You signed up for " +
+        eventTitleTextView.getText().toString().trim(), Toast.LENGTH_LONG).show();
     }
 }
